@@ -1,0 +1,53 @@
+<main>
+    <section>
+        <div class="text-group">
+            <h1>Contato</h1>
+            <p>Gostaria de iniciar algum projeto? Entre em contato agora mesmo!</p>
+        </div>
+        <div class="social-media">
+            <a class="social-media-link" href="https://api.whatsapp.com/send?phone=5548998665287" target="_blank">
+                <i-lucide [img]="PhoneIcon" color="var(--foreground)"></i-lucide>
+                +55 (48) 9 9866-5287
+            </a>
+            <a class="social-media-link" href="https://www.linkedin.com/in/thiagopiffer" target="_blank">
+                <i-lucide [img]="LinkedinIcon" color="var(--foreground)"></i-lucide>
+                thiagopiffer
+            </a>
+            <a class="social-media-link" href="https://github.com/ThiagoPffer" target="_blank">
+                <i-lucide [img]="GithubIcon" color="var(--foreground)"></i-lucide>
+                thiagopiffer
+            </a>
+        </div>
+    </section>
+    <section class="form-section">
+        <form class="gform" [formGroup]="contactForm" (ngSubmit)="onSubmit()" [ngClass]="{'loading': loading}" *ngIf="!success && !error">
+            <i-lucide *ngIf="loading" [img]="LoadingIcon" class="loading-icon" color="var(--border)" [size]="'46px'"></i-lucide>
+            <div class="input-container">
+                <div class="input-group">
+                    <label for="name">Nome:</label>
+                    <input type="text" id="name" formControlName="name" required>
+                </div>
+                <div class="input-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" formControlName="email" required>
+                </div>
+                <div class="input-group">
+                    <label for="message">Mensagem:</label>
+                    <textarea id="message" formControlName="message" rows="10" required></textarea>
+                </div>
+            </div>
+            <button type="submit" class="default-button" 
+                [disabled]="contactForm.invalid || loading">
+                Enviar
+                <i-lucide [img]="MailIcon" color="var(--background)"></i-lucide>
+            </button>
+        </form>
+        <div *ngIf="success" class="success-message" style="color: green;">
+            <i-lucide [img]="CheckIcon" color="green"></i-lucide>
+            Mensagem enviada com sucesso!
+        </div>
+        <div *ngIf="error" class="error-message" style="color: red;">
+            Erro ao enviar mensagem. Atualize a página e tente novamente.
+        </div>
+    </section>
+</main>
